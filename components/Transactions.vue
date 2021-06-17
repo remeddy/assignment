@@ -54,13 +54,12 @@
 </template>
 
 <script>
-import { defineComponent, ref, computed } from '@nuxtjs/composition-api'
+import { defineComponent, computed } from '@nuxtjs/composition-api'
 import { transactionTypes } from '@/constants/transactionTypes'
 export default defineComponent({
   setup (props, { root, emit }) {
     const
       transactions = computed(() => root.$store.state.transactions),
-      transactionModel = ref(transactions.value),
       isLoaded = computed(() => transactions.value.length > 0)
 
     root.$store.dispatch('getTransactions')
@@ -75,7 +74,6 @@ export default defineComponent({
       isLoaded,
       transactions,
       transactionTypes,
-      transactionModel,
       onSet
     }
   }
